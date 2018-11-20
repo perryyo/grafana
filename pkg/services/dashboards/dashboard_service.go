@@ -165,6 +165,7 @@ func (dr *dashboardServiceImpl) updateAlerting(cmd *models.SaveDashboardCommand,
 	}
 
 	if err := bus.Dispatch(&alertCmd); err != nil {
+		dr.log.Error("Failed to save alert data", "error", err)
 		return models.ErrDashboardFailedToUpdateAlertData
 	}
 
